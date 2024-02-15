@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+}
+  
+body {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif, sans-serif; /* Default font */
+    line-height: 1.6; /* Default line height */
+    background-color: #f4f4f4; /* Light grey background */
+    color: #333; /* Default text color */
+}
+  
+/* Dark mode setting */
+body.dark {
+    background-color: #353944;
+    color: white !important;
+} /* #9b59b6 */
+
+body.dark h1, body.dark li a span, nav hr {
+    color: #fff !important;
+}
+
+body.dark nav hr {
+    background-color: #fff !important;
+}
+
+.content {
+    transition: margin-left var(--transition2);; /* Smooth transition for margin changes */
+    margin-left: 300px; /* Adjust based on the expanded sidebar width */
+}
+  
+.nav-min + .content {
+    margin-left: 80px; /* Adjust based on the contracted sidebar width */
+}
+  
+

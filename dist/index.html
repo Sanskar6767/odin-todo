@@ -4,8 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 </head>
 <body>
-    
-<script defer src="main.js"></script></body>
+    <div class="header">
+        <div>
+            <a href="/">
+                <img src="img" alt="logo" class="logo">
+            </a>
+        </div>
+        <div>
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+              <i class="fas fa-moon"></i>
+              <i class="fas fa-sun"></i>
+              <span class="ball"></span>
+            </label>
+        </div>
+    </div>
+    <nav class="nav-max">
+        <header>
+          <a class="box nav-link" href="#"></a>
+          <h1>Title</h1>
+        </header>
+        <button id="toggle-nav-btn" class="circle"></button>
+        <br>
+        <hr>
+        <ul class="menu">
+          <li>
+            <a class="nav-link" href="#">
+              <img src="" alt="">
+              <span>Daily Goals</span>
+            </a>  
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+              <div class="box"></div>
+              <span>Weekly Goals</span>
+            </a>  
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+              <div class="box"></div>
+              
+              <span>Monthly Goals</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+<script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script></body>
 </html>
