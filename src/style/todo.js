@@ -1,4 +1,4 @@
-class TodoItem{
+export class TodoItem{
     constructor(title, desc, duedate, priority) {
         this.title = title;
         this.desc = desc;

@@ -1,4 +1,4 @@
-class Project {
+export class Project {
     constructor(name) {
         this.name = name;
         this.tasks = [];
@@ -10,6 +10,10 @@ class Project {
         } else {
             console.error('Invalid task');
         }
+    }
+
+    renameProject(name) {
+        this.name = name;
     }
 
     removeTask(taskIndex) {

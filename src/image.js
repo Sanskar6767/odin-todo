@@ -19,8 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const calendarImg = document.querySelector('.calendar');
     if (calendarImg) calendarImg.src = calendar;
     
-})
-
+});
 
 
 
@@ -51,6 +50,20 @@ function closeNav() {
   navBar.classList.add("nav-min")
 }
 
+// Active sidebar 
+document.addEventListener('DOMContentLoaded', () => {
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      navLinks.forEach(link => {
+        link.parentElement.classList.remove('active');
+      });
+      this.parentElement.classList.add('active');
+      console.log('click');
+    });
+  });
+});
 
 // Medias
 const phone = window.matchMedia("(width <= 480px)")
@@ -64,3 +77,4 @@ function media(e) {
 }
 
 phone.addListener(media)
+
