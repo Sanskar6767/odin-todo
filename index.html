@@ -5,52 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <script src="https://kit.fontawesome.com/eaee7cb5d0.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="header">
-        <div>
-            <a href="/">
-                <img src="img" alt="logo" class="logo">
-            </a>
+  <div class="header">
+      <div>
+          <a href="/">
+              <img src="img" alt="logo" class="logo">
+          </a>
+      </div>
+      <div>
+          <input type="checkbox" class="checkbox" id="checkbox" checked>
+          <label for="checkbox" class="checkbox-label">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+            <span class="ball"></span>
+          </label>
+      </div>
+  </div>
+
+  <nav class="nav-max">
+    <header>
+      <a class="box nav-link" href="#"></a>
+      <h1>MENU</h1>
+    </header>
+    <button id="toggle-nav-btn" class="circle"></button>
+    <br>
+    <hr>
+    <ul class="menu">
+      <li>
+        <a class="nav-link" href="#">
+          <img src="" alt="" class="sideicon target">
+          <span>Daily Goals</span>
+        </a>  
+      </li>
+      <li>
+        <a class="nav-link" href="#">
+          <img src="" alt="" class="sideicon todo">
+          <span>Weekly Goals</span>
+        </a>  
+      </li>
+      <li>
+        <a class="nav-link" href="#">
+          <img src="" alt="" class="sideicon calendar">
+            <span>Monthly Goals</span>
+        </a>
+      </li>
+    </ul>
+    <br>
+    <hr>
+    <ul class="projects">
+      <li class="active">
+        <a class="nav-link" href="#">
+          <img src="" alt="" class="sideicon all">
+          <span>All Projects</span>
+        </a>  
+      </li>
+      <li>
+        <a class="nav-link" href="#">
+          <img src="" alt="" class="sideicon demo">
+          <span>Demo Object</span>
+        </a>  
+      </li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    
+    <div class="new-project">
+      <form id="myForm" >
+        <div class="new-proj-form">
+            <input autocomplete="off" autofocus class="" type="text" name="Project-name" placeholder="Name" required>
         </div>
         <div>
-            <input type="checkbox" class="checkbox" id="checkbox">
-            <label for="checkbox" class="checkbox-label">
-              <i class="fas fa-moon"></i>
-              <i class="fas fa-sun"></i>
-              <span class="ball"></span>
-            </label>
+          <button type="button" id="new-proj-button">Add New Project</button>
         </div>
+
+      </form>
     </div>
-    <nav class="nav-max">
-        <header>
-          <a class="box nav-link" href="#"></a>
-          <h1>Title</h1>
-        </header>
-        <button id="toggle-nav-btn" class="circle"></button>
-        <br>
-        <hr>
-        <ul class="menu">
-          <li>
-            <a class="nav-link" href="#">
-              <img src="" alt="">
-              <span>Daily Goals</span>
-            </a>  
-          </li>
-          <li>
-            <a class="nav-link" href="#">
-              <div class="box"></div>
-              <span>Weekly Goals</span>
-            </a>  
-          </li>
-          <li>
-            <a class="nav-link" href="#">
-              <div class="box"></div>
-              
-              <span>Monthly Goals</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+
+    <div class="project">
+      <div class="wrapper-grid">
+        <div class="project-card">
+          <div class="proj-title-div">
+            <h2>Project name</h2>
+          </div>
+          <div class="proj-tasks">
+            <div class="task-div">
+              <div class="task-flex">
+                <input type="checkbox" name="done" id="done">
+                <p>take out the trash</p>
+              </div>
+              <div class="task-flex">
+                <input id="star1" class="star" type="checkbox" title="important" ><br/><br/>
+                <p>12/3/1221</p>
+              </div> 
+            </div>
+
+            <div class="task-div">
+              <div class="task-flex">
+                <input type="checkbox" name="done" id="done">
+                <p>clean utensils</p>
+              </div>
+              <div class="task-flex">
+                <input id="star1" class="star" type="checkbox" title="important" ><br/><br/>
+                <p>12/3/1221</p>
+              </div> 
+            </div>
+
+            <div class="task-div">
+              <div class="task-flex">
+                <input type="checkbox" name="done" id="done">
+                <p>take out the trash of mrs. sexy neighbor and then flirt with her by asking about her loneliness</p>
+              </div>
+              <div class="task-flex">
+                <input id="star1" class="star" type="checkbox" title="important" ><br/><br/>
+                <p>12/3/1221</p>
+              </div> 
+            </div>
+            
+           
+          </div>
+          
+        </div>
+        
+      </div>
+
+    </div>
+
+    
+  </div>
 <script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script></body>
 </html>
