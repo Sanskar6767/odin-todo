@@ -4,6 +4,7 @@ import './image.js';
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css"; 
 import './all-projects.js';
+import './projectOpen.js';
 
 
 
@@ -21,5 +22,4 @@ flatpickr("#yourInputFieldId", {
   dateFormat: "Y-m-d",
   minDate: "today", // Disables past dates
 });
-
 

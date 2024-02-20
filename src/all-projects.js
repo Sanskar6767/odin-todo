@@ -2,22 +2,47 @@ import { TodoItem } from "./style/todo";
 import { Project } from "./project";
 import './style/all-projects.css';
 import clean from './assets/clean.svg';
+import { navLinkActivate } from "./image";
+import { openProject } from "./projectOpen";
 
 
 
-const allProjects = [];
+export const allProjects = [];
 function addingDemoProject() {
     const demoProject = new Project('Demo Project');
+    demoProject.addTask(new TodoItem('Task 1', 'Description 1', new Date(), 'High'));
+    demoProject.addTask(new TodoItem('Task 2', 'Description 2', new Date(), 'Medium'));
     allProjects.push(demoProject);
     addProjectInSidebar('Demo Project');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    createAllProjectsPage();
+});
+
+const allProjectsSidebar = document.querySelector('.all-pro');
+allProjectsSidebar.addEventListener('click', () => {
+    if (allProjectsSidebar.className !== 'active') {
+        const content = document.querySelector('.content');
+        content.innerHTML = '';
+        
+        createForm();
+        addProjects();
+        showAllProjects(allProjects);
+        openProject();
+    }
+    
+})
+
+
+function createAllProjectsPage() {
     createForm();
     addingDemoProject();
     showAllProjects(allProjects);
     addProjects();
-});
+    navLinkActivate();
+    openProject();
+}
 
 function addProjects () {
     const newProjButton = document.querySelector('#new-proj-button');
@@ -37,6 +62,8 @@ function addProjects () {
             console.log(allProjects);
             addProjectInSidebar(projName);
             showAllProjects(allProjects);
+            navLinkActivate();
+            openProject();
         } else {
             alert("Project with this name already exists.");
         }
@@ -105,6 +132,9 @@ function addProjectInSidebar(name) {
     const a = document.createElement('a');
     a.classList.add('nav-link');
     a.href = '#';
+    // for eventlistener grouping with the list of all projects and thus matching a common class 
+    a.classList.add('proj-a');
+    a.setAttribute('data-project-name', name);
 
     const img = document.createElement('img');
     img.classList.add('sideicon')
@@ -144,13 +174,16 @@ function showAllProjects(allProjects) {
 
     const ol = document.createElement('ol');
 
-    allProjects.forEach(element => {
-        const name = element.name;
+    allProjects.forEach(project => {
+        const name = project.name;
         const li = document.createElement('li');
         li.classList.add('proj-li');
+
         const a = document.createElement('a');
         a.classList.add('proj-a');
         a.href = '#';
+        a.setAttribute('data-project-name', project.name);
+
         const h4 = document.createElement('h4');
         h4.textContent = name;
 
@@ -164,7 +197,5 @@ function showAllProjects(allProjects) {
     wrapper.appendChild(heading);
     wrapper.appendChild(projectlist);
     section.appendChild(wrapper);
-
-    console.log('page refreashe');
 
 }

@@ -1,9 +1,11 @@
+import { format } from "date-fns";
+
 export class TodoItem{
     constructor(title, desc, duedate, priority) {
         this.title = title;
         this.desc = desc;
         this.duedate = duedate;
-        this.priority = priority;
+        this.priority = false;
         this.completed = false;
     }
 
@@ -19,8 +21,8 @@ export class TodoItem{
         this.duedate = duedate;
     }
 
-    changePriority(priority) {
-        this.priority = priority;
+    togglePriority(priority) {
+        this.priority = !this.priority;
     }
 
     getFormattedDueDate() {

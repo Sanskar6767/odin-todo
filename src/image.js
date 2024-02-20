@@ -51,7 +51,8 @@ function closeNav() {
 }
 
 // Active sidebar 
-document.addEventListener('DOMContentLoaded', () => {
+export function navLinkActivate() {
+  
   const navLinks = document.querySelectorAll('.nav-link');
 
   navLinks.forEach(link => {
@@ -60,10 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
         link.parentElement.classList.remove('active');
       });
       this.parentElement.classList.add('active');
-      console.log('click');
     });
   });
-});
+  
+}
 
 // Medias
 const phone = window.matchMedia("(width <= 480px)")
