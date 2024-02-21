@@ -66,7 +66,7 @@
 
   <div class="content">
 
-    <!-- <div class="pro-container">
+    <div class="pro-container">
       <div class="wrapper-grid">
         <div class="project-card">
 
@@ -77,17 +77,22 @@
           <div class="proj-tasks">
 
             <div class="task-div">
-              <div class="task-flex">
-                <input type="checkbox" name="done" id="done">
-                <p>take out the trash</p>
-              </div>
-              <div class="task-flex">
-                <input id="star1" class="star" type="checkbox" title="important" ><br/><br/>
-                <p>12/3/1221</p>
-              </div> 
+              
+                <div class="task-flex">
+                  <input type="checkbox" name="done" id="done">
+                  <p>take out the trash</p>
+                </div>
+                <div class="task-flex">
+                  <input id="star1" class="star" type="checkbox" title="important" ><br/><br/>
+                  <p>12/3/1221</p>
+                  <button type="button" class="edit-task">Edit</button>
+                  <button type="button" class="remove-task">Remove</button>
+                </div> 
+              
             </div>
 
             <div class="task-div">
+              
               <div class="task-flex">
                 <input type="checkbox" name="done" id="done">
                 <p>clean utensils</p>
@@ -106,7 +111,7 @@
       <div class="flex">
         <button class="addtask-button"> Add a task</button>
       </div>
-    </div> -->
+    </div>
 
 
     <!-- <section class="task-container">
@@ -135,7 +140,7 @@
 
 
           <div class="form-buttons">
-            <button type="submit">Add Task</button>
+            <button type="submit" id="submit-button">Add Task</button>
             <button type="button" id="cancel-button">Cancel</button>
           </div>
           

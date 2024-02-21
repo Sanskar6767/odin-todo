@@ -1,11 +1,14 @@
 import { format } from "date-fns";
 
+let taskIdCounter = 0;
+
 export class TodoItem{
     constructor(title, desc, duedate, priority) {
+        this.id = ++taskIdCounter;
         this.title = title;
         this.desc = desc;
         this.duedate = duedate;
-        this.priority = false;
+        this.priority = priority;
         this.completed = false;
     }
 
@@ -21,16 +24,21 @@ export class TodoItem{
         this.duedate = duedate;
     }
 
-    togglePriority(priority) {
+    togglePriority() {
         this.priority = !this.priority;
+        
     }
 
     getFormattedDueDate() {
         return format(this.duedate, 'PP'); //'Jan 1, 2024'
     }
 
-    toggleCompleteion() {
+    toggleCompletion() {
         this.completed = !this.completed;
+    }
+
+    setCompletion(status) {
+        this.completed = status;
     }
     
 } 

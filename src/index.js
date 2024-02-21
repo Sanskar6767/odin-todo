@@ -17,8 +17,7 @@ checkbox.addEventListener("change", () => {
 })
 
 
-flatpickr("#yourInputFieldId", {
-  enableTime: true,
+flatpickr("#task-deadline", {
   dateFormat: "Y-m-d",
   minDate: "today", // Disables past dates
 });

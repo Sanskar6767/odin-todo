@@ -10,8 +10,8 @@ import { openProject } from "./projectOpen";
 export const allProjects = [];
 function addingDemoProject() {
     const demoProject = new Project('Demo Project');
-    demoProject.addTask(new TodoItem('Task 1', 'Description 1', new Date(), 'High'));
-    demoProject.addTask(new TodoItem('Task 2', 'Description 2', new Date(), 'Medium'));
+    demoProject.addTask(new TodoItem('Task 1', 'Description 1', new Date(), true));
+    demoProject.addTask(new TodoItem('Task 2', 'Description 2', new Date(), false));
     allProjects.push(demoProject);
     addProjectInSidebar('Demo Project');
 }

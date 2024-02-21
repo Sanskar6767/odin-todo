@@ -28,6 +28,9 @@
 .proj-tasks {
     text-align: left;
     padding: 10px;
+    /* display: flex;
+    flex-direction: column;
+    gap: 20px; */
 }
 
 .task-div {
@@ -35,11 +38,14 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid black;
+    text-decoration: none;
+    color: inherit;
+    padding: 20px 10px;
 }
 
 .task-flex {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     align-items: center;
 }
 
@@ -87,6 +93,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.remove-task{
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #e2151f; 
+}
+
+.edit-task{
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #007bff; 
+}
+
+.remove-task:hover {
+    background-color: #6a0a0c;   
 }
 
 /* task adding form css  */
@@ -151,18 +181,53 @@ button[type="submit"]{
     background-color: #007bff;   
 }
 
-button[type="button"]{
-    background-color: #e21578;   
+#cancel-button{
+    background-color: #e2151f;   
 }
 
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-button[type="button"]:hover {
-    background-color: #6a0a39;   
+#cancel-button:hover {
+    background-color: #6a0a0c;   
 }
 
 
   
+/* edit task form  */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-task-form {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.edit-task-form .edit-task-submit, .edit-task-form .edit-task-cancel{
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px; 
+}
+
+.edit-task-form .edit-task-cancel {
+    background-color: #e2151f;
+}
 
