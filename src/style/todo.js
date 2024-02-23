@@ -1,6 +1,9 @@
 import { format } from "date-fns";
 
 let taskIdCounter = 0;
+export function setTaskIdCounter(newMaxId) {
+    taskIdCounter = newMaxId;
+}
 
 export class TodoItem{
     constructor(title, desc, duedate, priority) {

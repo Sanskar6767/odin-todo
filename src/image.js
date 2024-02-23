@@ -5,6 +5,12 @@ import calendar from './assets/calendar-days.svg';
 import all from './assets/border-all.svg';
 import clean from './assets/clean.svg';
 
+
+export function clearLocalStorage() {
+  localStorage.clear();
+  window.location.reload(); // Optional: Reload the page to see changes immediately
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const logoImage = document.querySelector('.logo');
     if (logoImage) logoImage.src = logo;
@@ -54,15 +60,17 @@ function closeNav() {
 export function navLinkActivate() {
   
   const navLinks = document.querySelectorAll('.nav-link');
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      navLinks.forEach(link => {
-        link.parentElement.classList.remove('active');
+  if (!navLinks) {
+    return;
+  }
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        navLinks.forEach(link => {
+          link.parentElement.classList.remove('active');
+        });
+        this.parentElement.classList.add('active');
       });
-      this.parentElement.classList.add('active');
     });
-  });
   
 }
 

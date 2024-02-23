@@ -15,6 +15,9 @@
           </a>
       </div>
       <div>
+        <button onclick="clearLocalStorage()">Clear Local Storage</button>
+      </div>
+      <div>
           <input type="checkbox" class="checkbox" id="checkbox" checked>
           <label for="checkbox" class="checkbox-label">
             <i class="fas fa-sun"></i>
@@ -45,93 +48,109 @@
           <span>Weekly Goals</span>
         </a>  
       </li>
-      <li>
+      <!-- <li>
         <a class="nav-link" href="#">
           <img src="" alt="" class="sideicon calendar">
             <span>Monthly Goals</span>
         </a>
-      </li>
+      </li> -->
     </ul>
     <br>
     <hr>
     <ul class="projects">
       <li class="active">
-        <a class="nav-link" href="#">
+        <a class="nav-link all-pro" href="#">
           <img src="" alt="" class="sideicon all">
           <span>All Projects</span>
-        </a>  
-      </li>
-      <li>
-        <a class="nav-link" href="#">
-          <img src="" alt="" class="sideicon demo">
-          <span>Demo Object</span>
         </a>  
       </li>
     </ul>
   </nav>
 
   <div class="content">
-    
-    <div class="new-project">
-      <form id="myForm" >
-        <div class="new-proj-form">
-            <input autocomplete="off" autofocus class="" type="text" name="Project-name" placeholder="Name" required>
-        </div>
-        <div>
-          <button type="button" id="new-proj-button">Add New Project</button>
-        </div>
 
-      </form>
-    </div>
-
-    <div class="project">
+    <!-- <div class="pro-container">
       <div class="wrapper-grid">
         <div class="project-card">
+
           <div class="proj-title-div">
             <h2>Project name</h2>
           </div>
+
           <div class="proj-tasks">
+
             <div class="task-div">
-              <div class="task-flex">
-                <input type="checkbox" name="done" id="done">
-                <p>take out the trash</p>
-              </div>
-              <div class="task-flex">
-                <input id="star1" class="star" type="checkbox" title="important" ><br/><br/>
-                <p>12/3/1221</p>
-              </div> 
+              
+                <div class="task-flex">
+                  <input type="checkbox" name="done" id="done">
+                  <p>take out the trash</p>
+                </div>
+                <div class="task-flex">
+                  <input id="star1" class="star" type="checkbox" title="important" ><br/><br/>
+                  <p>12/3/1221</p>
+                  <button type="button" class="edit-task">Edit</button>
+                  <button type="button" class="remove-task">Remove</button>
+                </div> 
+              
             </div>
 
             <div class="task-div">
+              
               <div class="task-flex">
                 <input type="checkbox" name="done" id="done">
                 <p>clean utensils</p>
               </div>
               <div class="task-flex">
-                <input id="star1" class="star" type="checkbox" title="important" ><br/><br/>
+                <input id="star1" class="star" type="checkbox" title="important" >
                 <p>12/3/1221</p>
               </div> 
             </div>
-
-            <div class="task-div">
-              <div class="task-flex">
-                <input type="checkbox" name="done" id="done">
-                <p>take out the trash of mrs. sexy neighbor and then flirt with her by asking about her loneliness</p>
-              </div>
-              <div class="task-flex">
-                <input id="star1" class="star" type="checkbox" title="important" ><br/><br/>
-                <p>12/3/1221</p>
-              </div> 
-            </div>
-            
            
           </div>
           
         </div>
         
       </div>
+      <div class="flex">
+        <button class="addtask-button"> Add a task</button>
+      </div>
+    </div> -->
 
-    </div>
+
+    <!-- <section class="task-container">
+      <div class="task-add-div">
+        <form id="add-task-form">
+          
+          <div class="form-group">
+            <label for="task-name">Task Name* :</label>
+            <input type="text" id="task-name" name="task-name" required>
+          </div>
+        
+          <div class="form-group">
+            <label for="task-desc">Task Description (Optional):</label>
+            <textarea id="task-desc" name="task-desc"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="task-deadline">Deadline:</label>
+            <input type="date" id="task-deadline" name="task-deadline" required>
+          </div>
+        
+          <div class="form-group">
+            <label for="task-important">Priority</label>
+            <input id="task-priority" class="star" type="checkbox" name="task-priority" > 
+          </div>
+
+
+          <div class="form-buttons">
+            <button type="submit" id="submit-button">Add Task</button>
+            <button type="button" id="cancel-button">Cancel</button>
+          </div>
+          
+        </form> -->
+      </div>
+    </section>
+
 
     
   </div>

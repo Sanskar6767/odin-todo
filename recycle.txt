@@ -1,0 +1,24 @@
+// ul.innerHTML = '';
+
+    // const allLi = document.createElement('li');
+    // allLi.classList.add('active');
+
+    // const alla = document.createElement('a');
+    // alla.classList.add('nav-link');
+    // alla.classList.add('all-pro');
+    // alla.href = '#';
+
+    // const allImg = document.createElement('img');
+    // allImg.src = '';
+    // allImg.alt = '';
+    // allImg.classList.add('sideicon');
+    // allImg.classList.add('all-pro');
+
+    // const allSpan = document.createElement('span');
+    // allSpan.textContent = "All Projects";
+
+    // alla.appendChild(allImg)
+    // alla.appendChild(allSpan);
+    // allLi.appendChild(alla);
+
+    // ul.appendChild(allLi);

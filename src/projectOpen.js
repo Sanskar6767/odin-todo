@@ -2,6 +2,8 @@ import { allProjects } from "./all-projects";
 import './style/projectOpen.css';
 import { TodoItem } from "./style/todo";
 import flatpickr from "flatpickr";
+import { saveProjectsToLocalStorage } from "./all-projects";
+import { loadProjectsFromLocalStorage } from "./all-projects";
 
 export function openProject() {
     const projects = document.querySelectorAll('.proj-a');
@@ -121,7 +123,7 @@ function displayProjectDetails(projectName) {
 
         // adding features to each task 
         projTasks.addEventListener('click', function(event) {
-        
+            loadProjectsFromLocalStorage();
             const taskId = event.target.closest('.task-div').getAttribute('data-task-id');
             const task = project.tasks.find(t => t.id.toString() === taskId);
     
@@ -129,6 +131,8 @@ function displayProjectDetails(projectName) {
                 if (event.target.classList.contains('edit-task')) {
                     console.log('Edit Task', task);
                     createEditTaskForm(projectName, taskId);
+                    console.log('Edit done', task);
+                    saveProjectsToLocalStorage();
                     // Here you would implement the logic to edit the task
                 } else if (event.target.classList.contains('remove-task')) {
                     console.log('Remove Task', task);
@@ -136,29 +140,27 @@ function displayProjectDetails(projectName) {
                     const findIndex = project.tasks.findIndex(task => task.id === intTaskId);
                     if (findIndex !== -1) {
                         // project.tasks.splice(findIndex, 1);
-                        project.removeTask(findIndex)
+                        project.removeTask(findIndex);
                         displayProjectDetails(projectName); // Refresh the project details to show the updated task list
+                        saveProjectsToLocalStorage();
                     }
 
                 } else if (event.target.type === 'checkbox' && event.target.classList.contains('star')) {
                     // Toggle task priority
                     task.togglePriority();
                     displayProjectDetails(projectName);
+                    saveProjectsToLocalStorage();
 
                 } else if (event.target.type === 'checkbox' && event.target.classList.contains('done')) {
                     task.toggleCompletion();
                     console.log(task.completed);
+                    saveProjectsToLocalStorage();
                     displayProjectDetails(projectName);
+                    
                 }
             }
         
         });
-
-
-
-
-
-
 
 
         makeTaskForm(projectName);
@@ -264,8 +266,12 @@ function createEditTaskForm(projectName, taskId) {
         }
         console.log(task);
         displayProjectDetails(project.name);
+        saveProjectsToLocalStorage();
         overlay.remove(); // Close the form after updating
     };
+
+    
+
 }
 
 
@@ -417,6 +423,7 @@ function makeTaskForm(projectName) {
         const project = allProjects.find(p => p.name === projectName);
         project.addTask(task);
         displayProjectDetails(projectName);
+        saveProjectsToLocalStorage();
 
     }); 
     

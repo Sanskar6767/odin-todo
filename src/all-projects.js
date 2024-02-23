@@ -5,20 +5,52 @@ import clean from './assets/clean.svg';
 import { navLinkActivate } from "./image";
 import { openProject } from "./projectOpen";
 
+// functions to use localStorage effectively 
+
+export function saveProjectsToLocalStorage() {
+    localStorage.setItem('allProjects', JSON.stringify(allProjects));
+}
+
+export function loadProjectsFromLocalStorage() {
+    const savedProjects = localStorage.getItem('allProjects');
+    if (!savedProjects) return [];
+
+    const projectsData = JSON.parse(savedProjects);
+    const projects = projectsData.map(projData => {
+        const project = new Project(projData.name);
+        projData.tasks.forEach(taskData => {
+            const task = new TodoItem(taskData.title, taskData.desc, new Date(taskData.duedate), taskData.priority);
+            task.setCompletion(taskData.completed || false); 
+            project.addTask(task);
+        });
+        return project;
+    });
+    return projects;
+}
 
 
-export const allProjects = [];
+export let allProjects = loadProjectsFromLocalStorage();
+
+// export let allProjects = [];
+
+
 function addingDemoProject() {
-    const demoProject = new Project('Demo Project');
-    demoProject.addTask(new TodoItem('Task 1', 'Description 1', new Date(), true));
-    demoProject.addTask(new TodoItem('Task 2', 'Description 2', new Date(), false));
-    allProjects.push(demoProject);
-    addProjectInSidebar('Demo Project');
+    // Check if 'Demo Project' already exists
+    const demoExists = allProjects.some(project => project.name === 'Demo Project');
+    if (!demoExists) {
+        const demoProject = new Project('Demo Project');
+        demoProject.addTask(new TodoItem('Task 1', 'Description 1', new Date(), true));
+        demoProject.addTask(new TodoItem('Task 2', 'Description 2', new Date(), false));
+        allProjects.push(demoProject);
+        addProjectInSidebar('Demo Project');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     createAllProjectsPage();
 });
+
+
 
 const allProjectsSidebar = document.querySelector('.all-pro');
 allProjectsSidebar.addEventListener('click', () => {
@@ -36,9 +68,12 @@ allProjectsSidebar.addEventListener('click', () => {
 
 
 function createAllProjectsPage() {
+    loadProjectsFromLocalStorage();
+    // saveProjectsToLocalStorage();
     createForm();
     addingDemoProject();
     showAllProjects(allProjects);
+    addProjectInSidebar();
     addProjects();
     navLinkActivate();
     openProject();
@@ -59,8 +94,11 @@ function addProjects () {
         const exists = allProjects.some(project => project.name === projName);
         if (!exists) {
             allProjects.push(new Project(projName));
+            saveProjectsToLocalStorage();
+            loadProjectsFromLocalStorage();
             console.log(allProjects);
-            addProjectInSidebar(projName);
+            addProjectInSidebar();
+            
             showAllProjects(allProjects);
             navLinkActivate();
             openProject();
@@ -124,33 +162,49 @@ function createForm() {
 
 }
 
-function addProjectInSidebar(name) {
+function addProjectInSidebar() {
+    loadProjectsFromLocalStorage();
+
     const ul = document.querySelector('.projects');
 
-    const li = document.createElement('li');
+    const lis = ul.querySelectorAll("li:not(:first-child)");
+
+    // Remove each li element except the first one
+    for (const li of lis) {
+        console.log(li);
+        li.parentNode.removeChild(li);
+    }
     
-    const a = document.createElement('a');
-    a.classList.add('nav-link');
-    a.href = '#';
-    // for eventlistener grouping with the list of all projects and thus matching a common class 
-    a.classList.add('proj-a');
-    a.setAttribute('data-project-name', name);
 
-    const img = document.createElement('img');
-    img.classList.add('sideicon')
-    img.classList.add('demo');
-    img.src = clean;
-    img.alt = 'Project icon'
+    allProjects.forEach(project => {
+        const ul = document.querySelector('.projects');
 
-    const span = document.createElement('span');
-    span.textContent = name;
+        const li = document.createElement('li');
+        li.classList.add('project-name-sidebar');
+        
+        const a = document.createElement('a');
+        a.classList.add('nav-link');
+        a.href = '#';
+        // for eventlistener grouping with the list of all projects and thus matching a common class 
+        a.classList.add('proj-a');
+        a.setAttribute('data-project-name', project.name);
 
-    a.appendChild(img);
-    a.appendChild(span);
+        const img = document.createElement('img');
+        img.classList.add('sideicon')
+        img.classList.add('demo');
+        img.src = clean;
+        img.alt = 'Project icon'
 
-    li.appendChild(a);
+        const span = document.createElement('span');
+        span.textContent = project.name;
 
-    ul.appendChild(li);
+        a.appendChild(img);
+        a.appendChild(span);
+
+        li.appendChild(a);
+
+        ul.appendChild(li);
+    }) 
 }
 
 function showAllProjects(allProjects) {
