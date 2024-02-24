@@ -1,9 +1,10 @@
-import { TodoItem } from "./style/todo";
+import { TodoItem } from "./todo";
 import { Project } from "./project";
 import './style/all-projects.css';
 import clean from './assets/clean.svg';
 import { navLinkActivate } from "./image";
 import { openProject } from "./projectOpen";
+import { differenceInBusinessDays } from "date-fns";
 
 // functions to use localStorage effectively 
 
@@ -61,6 +62,7 @@ allProjectsSidebar.addEventListener('click', () => {
         createForm();
         addProjects();
         showAllProjects(allProjects);
+        removeProjects();
         openProject();
     }
     
@@ -76,6 +78,7 @@ function createAllProjectsPage() {
     addProjectInSidebar();
     addProjects();
     navLinkActivate();
+    removeProjects();
     openProject();
 }
 
@@ -98,7 +101,7 @@ function addProjects () {
             loadProjectsFromLocalStorage();
             console.log(allProjects);
             addProjectInSidebar();
-            
+            removeProjects();
             showAllProjects(allProjects);
             navLinkActivate();
             openProject();
@@ -171,7 +174,6 @@ function addProjectInSidebar() {
 
     // Remove each li element except the first one
     for (const li of lis) {
-        console.log(li);
         li.parentNode.removeChild(li);
     }
     
@@ -228,24 +230,42 @@ function showAllProjects(allProjects) {
 
     const ol = document.createElement('ol');
 
-    allProjects.forEach(project => {
-        const name = project.name;
-        const li = document.createElement('li');
-        li.classList.add('proj-li');
+    if (allProjects.length === 0) {
+        const emptyMessage = document.createElement('p');
+        emptyMessage.textContent = 'No projects to display.';
+        emptyMessage.classList.add('empty-projects-message'); // Optionally style this message
+        projectlist.appendChild(emptyMessage);
+    
+    } else {
+        allProjects.forEach(project => {
+            const name = project.name;
+            const li = document.createElement('li');
+            li.classList.add('proj-li');
 
-        const a = document.createElement('a');
-        a.classList.add('proj-a');
-        a.href = '#';
-        a.setAttribute('data-project-name', project.name);
+            const divFlex = document.createElement('div');
+            divFlex.classList.add('flex-projects-div');
 
-        const h4 = document.createElement('h4');
-        h4.textContent = name;
+            const a = document.createElement('a');
+            a.classList.add('proj-a');
+            a.href = '#';
+            a.setAttribute('data-project-name', project.name);
 
-        a.appendChild(h4);
-        li.appendChild(a);
-        ol.appendChild(li);
+            const button = document.createElement('button');
+            button.classList.add('remove-project');
+            button.textContent = 'Remove';
+            button.setAttribute('project-name', project.name);
+
+            const h4 = document.createElement('h4');
+            h4.textContent = name;
+
+            a.appendChild(h4);
+            divFlex.appendChild(a);
+            divFlex.appendChild(button);
+            li.appendChild(divFlex);
+            ol.appendChild(li);
         
-    });
+        });
+    }
 
     projectlist.appendChild(ol);
     wrapper.appendChild(heading);
@@ -253,3 +273,24 @@ function showAllProjects(allProjects) {
     section.appendChild(wrapper);
 
 }
+
+function removeProjects() {
+    const section = document.querySelector('section'); // Assuming this is a stable parent that doesn’t get replaced
+    section.addEventListener('click', function(e) {
+        const target = e.target;
+        if (target.classList.contains('remove-project')) {
+            e.stopPropagation();
+            loadProjectsFromLocalStorage();
+            const projectNameRemove = target.getAttribute('project-name');
+            const projectIndex = allProjects.findIndex(p => p.name === projectNameRemove);
+            if (projectIndex > -1) {
+                allProjects.splice(projectIndex, 1);
+                saveProjectsToLocalStorage();
+                showAllProjects(allProjects);
+                addProjectInSidebar();
+            }
+        }
+    });
+}
+
+

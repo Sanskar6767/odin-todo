@@ -1,6 +1,6 @@
 import { allProjects } from "./all-projects";
 import './style/projectOpen.css';
-import { TodoItem } from "./style/todo";
+import { TodoItem } from "./todo";
 import flatpickr from "flatpickr";
 import { saveProjectsToLocalStorage } from "./all-projects";
 import { loadProjectsFromLocalStorage } from "./all-projects";

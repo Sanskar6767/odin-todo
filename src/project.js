@@ -1,4 +1,4 @@
-import { TodoItem } from "./style/todo";
+import { TodoItem } from "./todo";
 
 export class Project {
     constructor(name) {
